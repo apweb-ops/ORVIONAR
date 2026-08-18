@@ -137,8 +137,7 @@ function Admin() {
     URL.revokeObjectURL(url);
   };
 
-  const isForbidden =
-    admissions.isError || (!admissions.isLoading && (admissions.data?.length ?? 0) === 0 && false);
+  const isForbidden = admissions.isError;
 
   const stats = [
     { label: "Total applications", value: admissions.data?.length ?? 0 },
