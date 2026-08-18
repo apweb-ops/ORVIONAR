@@ -6,15 +6,17 @@ export function Logo({ className, onDark = false }: { className?: string; onDark
     <Link
       to="/"
       aria-label="ORVIONAR home"
-      className={cn("inline-flex items-center gap-2 font-extrabold tracking-tight", className)}
+      className={cn("inline-flex items-center gap-2.5 font-extrabold tracking-tight", className)}
     >
       <span
         aria-hidden="true"
-        className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-lg font-black text-primary-foreground"
+        className="grid size-11 place-items-center rounded-[14px] bg-primary"
       >
-        O
+        <span className="grid size-5 place-items-center rounded-full bg-white">
+          <span className="size-2 rounded-full bg-primary" />
+        </span>
       </span>
-      <span className={cn("text-xl", onDark ? "text-navy-foreground" : "text-ink")}>
+      <span className={cn("text-[1.35rem] leading-none", onDark ? "text-navy-foreground" : "text-ink")}>
         <span className="text-primary">OR</span>VIONAR
       </span>
     </Link>
