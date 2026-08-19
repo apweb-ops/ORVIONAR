@@ -1,412 +1,415 @@
-export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[]
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.15"
-  }
+    PostgrestVersion: "14.15";
+  };
   public: {
     Tables: {
       admissions: {
         Row: {
-          application_id: string
-          college: string
-          created_at: string
-          current_year: string | null
-          custom_domain: string | null
-          date_of_birth: string | null
-          degree: string | null
-          department: string | null
-          domain: string
-          email: string
-          full_name: string
-          graduation_year: string | null
-          id: string
-          joining_month: string | null
-          notes: string | null
-          phone: string
-          preferred_mode: string | null
-          preferred_session: string | null
-          source: string | null
-          status: string
-          updated_at: string
-          whatsapp: string | null
-        }
+          application_id: string;
+          college: string;
+          created_at: string;
+          current_year: string | null;
+          custom_domain: string | null;
+          date_of_birth: string | null;
+          degree: string | null;
+          department: string | null;
+          domain: string;
+          email: string;
+          full_name: string;
+          graduation_year: string | null;
+          id: string;
+          joining_month: string | null;
+          notes: string | null;
+          phone: string;
+          preferred_mode: string | null;
+          preferred_session: string | null;
+          source: string | null;
+          status: string;
+          updated_at: string;
+          whatsapp: string | null;
+        };
         Insert: {
-          application_id: string
-          college: string
-          created_at?: string
-          current_year?: string | null
-          custom_domain?: string | null
-          date_of_birth?: string | null
-          degree?: string | null
-          department?: string | null
-          domain: string
-          email: string
-          full_name: string
-          graduation_year?: string | null
-          id?: string
-          joining_month?: string | null
-          notes?: string | null
-          phone: string
-          preferred_mode?: string | null
-          preferred_session?: string | null
-          source?: string | null
-          status?: string
-          updated_at?: string
-          whatsapp?: string | null
-        }
+          application_id: string;
+          college: string;
+          created_at?: string;
+          current_year?: string | null;
+          custom_domain?: string | null;
+          date_of_birth?: string | null;
+          degree?: string | null;
+          department?: string | null;
+          domain: string;
+          email: string;
+          full_name: string;
+          graduation_year?: string | null;
+          id?: string;
+          joining_month?: string | null;
+          notes?: string | null;
+          phone: string;
+          preferred_mode?: string | null;
+          preferred_session?: string | null;
+          source?: string | null;
+          status?: string;
+          updated_at?: string;
+          whatsapp?: string | null;
+        };
         Update: {
-          application_id?: string
-          college?: string
-          created_at?: string
-          current_year?: string | null
-          custom_domain?: string | null
-          date_of_birth?: string | null
-          degree?: string | null
-          department?: string | null
-          domain?: string
-          email?: string
-          full_name?: string
-          graduation_year?: string | null
-          id?: string
-          joining_month?: string | null
-          notes?: string | null
-          phone?: string
-          preferred_mode?: string | null
-          preferred_session?: string | null
-          source?: string | null
-          status?: string
-          updated_at?: string
-          whatsapp?: string | null
-        }
-        Relationships: []
-      }
+          application_id?: string;
+          college?: string;
+          created_at?: string;
+          current_year?: string | null;
+          custom_domain?: string | null;
+          date_of_birth?: string | null;
+          degree?: string | null;
+          department?: string | null;
+          domain?: string;
+          email?: string;
+          full_name?: string;
+          graduation_year?: string | null;
+          id?: string;
+          joining_month?: string | null;
+          notes?: string | null;
+          phone?: string;
+          preferred_mode?: string | null;
+          preferred_session?: string | null;
+          source?: string | null;
+          status?: string;
+          updated_at?: string;
+          whatsapp?: string | null;
+        };
+        Relationships: [];
+      };
       joining_months: {
         Row: {
-          active: boolean
-          available_seats: number
-          created_at: string
-          id: string
-          month: string
-          month_index: number
-          updated_at: string
-        }
+          active: boolean;
+          available_seats: number;
+          created_at: string;
+          id: string;
+          month: string;
+          month_index: number;
+          updated_at: string;
+        };
         Insert: {
-          active?: boolean
-          available_seats?: number
-          created_at?: string
-          id?: string
-          month: string
-          month_index: number
-          updated_at?: string
-        }
+          active?: boolean;
+          available_seats?: number;
+          created_at?: string;
+          id?: string;
+          month: string;
+          month_index: number;
+          updated_at?: string;
+        };
         Update: {
-          active?: boolean
-          available_seats?: number
-          created_at?: string
-          id?: string
-          month?: string
-          month_index?: number
-          updated_at?: string
-        }
-        Relationships: []
-      }
+          active?: boolean;
+          available_seats?: number;
+          created_at?: string;
+          id?: string;
+          month?: string;
+          month_index?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       leads: {
         Row: {
-          created_at: string
-          email: string | null
-          id: string
-          message: string | null
-          name: string
-          phone: string | null
-          source: string | null
-          subject: string | null
-        }
+          created_at: string;
+          email: string | null;
+          id: string;
+          message: string | null;
+          name: string;
+          phone: string | null;
+          source: string | null;
+          subject: string | null;
+        };
         Insert: {
-          created_at?: string
-          email?: string | null
-          id?: string
-          message?: string | null
-          name: string
-          phone?: string | null
-          source?: string | null
-          subject?: string | null
-        }
+          created_at?: string;
+          email?: string | null;
+          id?: string;
+          message?: string | null;
+          name: string;
+          phone?: string | null;
+          source?: string | null;
+          subject?: string | null;
+        };
         Update: {
-          created_at?: string
-          email?: string | null
-          id?: string
-          message?: string | null
-          name?: string
-          phone?: string | null
-          source?: string | null
-          subject?: string | null
-        }
-        Relationships: []
-      }
+          created_at?: string;
+          email?: string | null;
+          id?: string;
+          message?: string | null;
+          name?: string;
+          phone?: string | null;
+          source?: string | null;
+          subject?: string | null;
+        };
+        Relationships: [];
+      };
       programs: {
         Row: {
-          active: boolean
-          category: string
-          created_at: string
-          description: string
-          duration: string
-          id: string
-          name: string
-          skills: string[]
-          slug: string
-          sort_order: number
-          updated_at: string
-        }
+          active: boolean;
+          category: string;
+          created_at: string;
+          description: string;
+          duration: string;
+          id: string;
+          name: string;
+          skills: string[];
+          slug: string;
+          sort_order: number;
+          updated_at: string;
+        };
         Insert: {
-          active?: boolean
-          category?: string
-          created_at?: string
-          description?: string
-          duration?: string
-          id?: string
-          name: string
-          skills?: string[]
-          slug: string
-          sort_order?: number
-          updated_at?: string
-        }
+          active?: boolean;
+          category?: string;
+          created_at?: string;
+          description?: string;
+          duration?: string;
+          id?: string;
+          name: string;
+          skills?: string[];
+          slug: string;
+          sort_order?: number;
+          updated_at?: string;
+        };
         Update: {
-          active?: boolean
-          category?: string
-          created_at?: string
-          description?: string
-          duration?: string
-          id?: string
-          name?: string
-          skills?: string[]
-          slug?: string
-          sort_order?: number
-          updated_at?: string
-        }
-        Relationships: []
-      }
+          active?: boolean;
+          category?: string;
+          created_at?: string;
+          description?: string;
+          duration?: string;
+          id?: string;
+          name?: string;
+          skills?: string[];
+          slug?: string;
+          sort_order?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       site_config: {
         Row: {
-          key: string
-          updated_at: string
-          value: string
-        }
+          key: string;
+          updated_at: string;
+          value: string;
+        };
         Insert: {
-          key: string
-          updated_at?: string
-          value?: string
-        }
+          key: string;
+          updated_at?: string;
+          value?: string;
+        };
         Update: {
-          key?: string
-          updated_at?: string
-          value?: string
-        }
-        Relationships: []
-      }
+          key?: string;
+          updated_at?: string;
+          value?: string;
+        };
+        Relationships: [];
+      };
       testimonials: {
         Row: {
-          created_at: string
-          excerpt: string
-          id: string
-          linkedin_url: string | null
-          program: string | null
-          published: boolean
-          sort_order: number
-          student_name: string
-        }
+          created_at: string;
+          excerpt: string;
+          id: string;
+          linkedin_url: string | null;
+          program: string | null;
+          published: boolean;
+          sort_order: number;
+          student_name: string;
+        };
         Insert: {
-          created_at?: string
-          excerpt: string
-          id?: string
-          linkedin_url?: string | null
-          program?: string | null
-          published?: boolean
-          sort_order?: number
-          student_name: string
-        }
+          created_at?: string;
+          excerpt: string;
+          id?: string;
+          linkedin_url?: string | null;
+          program?: string | null;
+          published?: boolean;
+          sort_order?: number;
+          student_name: string;
+        };
         Update: {
-          created_at?: string
-          excerpt?: string
-          id?: string
-          linkedin_url?: string | null
-          program?: string | null
-          published?: boolean
-          sort_order?: number
-          student_name?: string
-        }
-        Relationships: []
-      }
+          created_at?: string;
+          excerpt?: string;
+          id?: string;
+          linkedin_url?: string | null;
+          program?: string | null;
+          published?: boolean;
+          sort_order?: number;
+          student_name?: string;
+        };
+        Relationships: [];
+      };
       user_roles: {
         Row: {
-          created_at: string
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
+          created_at: string;
+          id: string;
+          role: Database["public"]["Enums"]["app_role"];
+          user_id: string;
+        };
         Insert: {
-          created_at?: string
-          id?: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
+          created_at?: string;
+          id?: string;
+          role: Database["public"]["Enums"]["app_role"];
+          user_id: string;
+        };
         Update: {
-          created_at?: string
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
-        }
-        Relationships: []
-      }
-    }
+          created_at?: string;
+          id?: string;
+          role?: Database["public"]["Enums"]["app_role"];
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Functions: {
       has_role: {
         Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
-      is_staff: { Args: { _user_id: string }; Returns: boolean }
-      submit_admission: { Args: { payload: Json }; Returns: Json }
-      submit_lead: { Args: { payload: Json }; Returns: Json }
-    }
+          _role: Database["public"]["Enums"]["app_role"];
+          _user_id: string;
+        };
+        Returns: boolean;
+      };
+      is_staff: { Args: { _user_id: string }; Returns: boolean };
+      is_active_admin: { Args: { candidate: string }; Returns: boolean };
+      get_admin_analytics: { Args: Record<PropertyKey, never>; Returns: Json };
+      log_admin_activity: {
+        Args: { action_name: string; admission_id?: string; log_details?: Json };
+        Returns: undefined;
+      };
+      record_analytics_event: {
+        Args: {
+          event_name: string;
+          event_label?: string;
+          event_path?: string;
+          event_visitor_id?: string;
+        };
+        Returns: undefined;
+      };
+      submit_admission: { Args: { payload: Json }; Returns: Json };
+      submit_lead: { Args: { payload: Json }; Returns: Json };
+    };
     Enums: {
-      app_role: "admin" | "staff"
-    }
+      app_role: "admin" | "staff";
+    };
     CompositeTypes: {
-      [_ in never]: never
-    }
-  }
-}
+      [_ in never]: never;
+    };
+  };
+};
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">;
 
-type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">];
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
       DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
+      Row: infer R;
     }
     ? R
     : never
-  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])
-    ? (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-        Row: infer R
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] & DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R;
       }
       ? R
       : never
-    : never
+    : never;
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    keyof DefaultSchema["Tables"] | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
+      Insert: infer I;
     }
     ? I
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Insert: infer I
+        Insert: infer I;
       }
       ? I
       : never
-    : never
+    : never;
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    keyof DefaultSchema["Tables"] | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
+      Update: infer U;
     }
     ? U
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Update: infer U
+        Update: infer U;
       }
       ? U
       : never
-    : never
+    : never;
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    keyof DefaultSchema["Enums"] | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaEnumNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-    : never
+    : never;
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
-    | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals
+    keyof DefaultSchema["CompositeTypes"] | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
+    : never) = never,
 > = PublicCompositeTypeNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals
+  schema: keyof DatabaseWithoutInternals;
 }
   ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never
+    : never;
 
 export const Constants = {
   public: {
@@ -414,4 +417,4 @@ export const Constants = {
       app_role: ["admin", "staff"],
     },
   },
-} as const
+} as const;

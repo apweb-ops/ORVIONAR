@@ -13,8 +13,7 @@ export const SITE = {
     "Haralukunte Village, HSR Layout,",
     "Bengaluru – 560102",
   ],
-  mapsQuery:
-    "Hustlehub Tech Park, Somasundarapalya Main Road, HSR Layout, Bengaluru 560102",
+  mapsQuery: "Hustlehub Tech Park, Somasundarapalya Main Road, HSR Layout, Bengaluru 560102",
   linkedin: "https://www.linkedin.com/company/orvionar",
   lms: "https://www.teachmint.com/",
 } as const;
@@ -23,8 +22,9 @@ export const SITE = {
 export const WHATSAPP_NUMBER: string =
   (import.meta.env["VITE_WHATSAPP_NUMBER"] as string | undefined) || "919663472640";
 
-export const whatsappLink = (message = "Hi ORVIONAR, I'd like to know more about the 3-Month Program.") =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+export const whatsappLink = (
+  message = "Hi ORVIONAR, I'd like to know more about the 3-Month Program.",
+) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 export const NAV_LINKS = [
   { label: "Home", to: "/" },
@@ -75,7 +75,7 @@ export const APPLICATION_STATUSES = [
   "Contacted",
   "Counselling",
   "Documents Pending",
-  "Application Approved",
+  "Approved",
   "Enrolled",
   "Rejected",
 ];
@@ -115,11 +115,19 @@ export const BENEFITS = [
 
 export const CAREER_SUPPORT = [
   { icon: "FileText", title: "Resume Preparation", text: "Create a stronger professional resume." },
-  { icon: "Calculator", title: "Aptitude Preparation", text: "Improve quantitative and logical reasoning skills." },
+  {
+    icon: "Calculator",
+    title: "Aptitude Preparation",
+    text: "Improve quantitative and logical reasoning skills.",
+  },
   { icon: "Users", title: "Group Discussion", text: "Develop confidence and communication." },
   { icon: "MessagesSquare", title: "Mock Interviews", text: "Practice real interview situations." },
   { icon: "Globe", title: "Portfolio Development", text: "Build a professional online presence." },
-  { icon: "Handshake", title: "Placement Assistance", text: "Receive career guidance and placement assistance." },
+  {
+    icon: "Handshake",
+    title: "Placement Assistance",
+    text: "Receive career guidance and placement assistance.",
+  },
 ] as const;
 
 export const FAQS = [

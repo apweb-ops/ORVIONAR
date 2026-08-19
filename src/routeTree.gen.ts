@@ -23,6 +23,10 @@ import { Route as StudentStoriesRouteImport } from './routes/student-stories'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThreeMonthProgramRouteImport } from './routes/three-month-program'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AuthenticatedAdminAdmissionsRouteImport } from './routes/_authenticated/admin/admissions'
+import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin/analytics'
+import { Route as AuthenticatedAdminAdmissionsApplicationIdRouteImport } from './routes/_authenticated/admin/admissions/$applicationId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -93,6 +97,29 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminAdmissionsRoute =
+  AuthenticatedAdminAdmissionsRouteImport.update({
+    id: '/admissions',
+    path: '/admissions',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminAnalyticsRoute =
+  AuthenticatedAdminAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminAdmissionsApplicationIdRoute =
+  AuthenticatedAdminAdmissionsApplicationIdRouteImport.update({
+    id: '/$applicationId',
+    path: '/$applicationId',
+    getParentRoute: () => AuthenticatedAdminAdmissionsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -107,7 +134,11 @@ export interface FileRoutesByFullPath {
   '/student-stories': typeof StudentStoriesRoute
   '/terms': typeof TermsRoute
   '/three-month-program': typeof ThreeMonthProgramRoute
-  '/admin': typeof AuthenticatedAdminRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/admissions': typeof AuthenticatedAdminAdmissionsRouteWithChildren
+  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/admissions/$applicationId': typeof AuthenticatedAdminAdmissionsApplicationIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -122,7 +153,11 @@ export interface FileRoutesByTo {
   '/student-stories': typeof StudentStoriesRoute
   '/terms': typeof TermsRoute
   '/three-month-program': typeof ThreeMonthProgramRoute
-  '/admin': typeof AuthenticatedAdminRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/admissions': typeof AuthenticatedAdminAdmissionsRouteWithChildren
+  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/admissions/$applicationId': typeof AuthenticatedAdminAdmissionsApplicationIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -139,7 +174,11 @@ export interface FileRoutesById {
   '/student-stories': typeof StudentStoriesRoute
   '/terms': typeof TermsRoute
   '/three-month-program': typeof ThreeMonthProgramRoute
-  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/_authenticated/admin/admissions': typeof AuthenticatedAdminAdmissionsRouteWithChildren
+  '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/admissions/$applicationId': typeof AuthenticatedAdminAdmissionsApplicationIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -157,6 +196,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/three-month-program'
     | '/admin'
+    | '/admin/login'
+    | '/admin/admissions'
+    | '/admin/analytics'
+    | '/admin/admissions/$applicationId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -172,6 +215,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/three-month-program'
     | '/admin'
+    | '/admin/login'
+    | '/admin/admissions'
+    | '/admin/analytics'
+    | '/admin/admissions/$applicationId'
   id:
     | '__root__'
     | '/'
@@ -188,6 +235,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/three-month-program'
     | '/_authenticated/admin'
+    | '/admin/login'
+    | '/_authenticated/admin/admissions'
+    | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/admissions/$applicationId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -204,6 +255,7 @@ export interface RootRouteChildren {
   StudentStoriesRoute: typeof StudentStoriesRoute
   TermsRoute: typeof TermsRoute
   ThreeMonthProgramRoute: typeof ThreeMonthProgramRoute
+  AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -306,15 +358,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/admissions': {
+      id: '/_authenticated/admin/admissions'
+      path: '/admissions'
+      fullPath: '/admin/admissions'
+      preLoaderRoute: typeof AuthenticatedAdminAdmissionsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/analytics': {
+      id: '/_authenticated/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AuthenticatedAdminAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/admissions/$applicationId': {
+      id: '/_authenticated/admin/admissions/$applicationId'
+      path: '/$applicationId'
+      fullPath: '/admin/admissions/$applicationId'
+      preLoaderRoute: typeof AuthenticatedAdminAdmissionsApplicationIdRouteImport
+      parentRoute: typeof AuthenticatedAdminAdmissionsRoute
+    }
   }
 }
 
+interface AuthenticatedAdminAdmissionsRouteChildren {
+  AuthenticatedAdminAdmissionsApplicationIdRoute: typeof AuthenticatedAdminAdmissionsApplicationIdRoute
+}
+
+const AuthenticatedAdminAdmissionsRouteChildren: AuthenticatedAdminAdmissionsRouteChildren =
+  {
+    AuthenticatedAdminAdmissionsApplicationIdRoute:
+      AuthenticatedAdminAdmissionsApplicationIdRoute,
+  }
+
+const AuthenticatedAdminAdmissionsRouteWithChildren =
+  AuthenticatedAdminAdmissionsRoute._addFileChildren(
+    AuthenticatedAdminAdmissionsRouteChildren,
+  )
+
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminAdmissionsRoute: typeof AuthenticatedAdminAdmissionsRouteWithChildren
+  AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminAdmissionsRoute:
+    AuthenticatedAdminAdmissionsRouteWithChildren,
+  AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -334,6 +443,7 @@ const rootRouteChildren: RootRouteChildren = {
   StudentStoriesRoute: StudentStoriesRoute,
   TermsRoute: TermsRoute,
   ThreeMonthProgramRoute: ThreeMonthProgramRoute,
+  AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

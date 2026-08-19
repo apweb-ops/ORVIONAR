@@ -1,9 +1,17 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { track } from "@/lib/analytics";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  useEffect(() => {
+    track("page_view", pathname);
+  }, [pathname]);
+
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />

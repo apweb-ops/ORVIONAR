@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Download, LogOut, Search, ShieldAlert } from "lucide-react";
+import { BarChart3, Download, LogOut, Search, ShieldAlert, Users } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -69,6 +69,19 @@ function Admin() {
   });
 
   const months = useQuery(joiningMonthsQuery);
+  const analytics = useQuery({
+    queryKey: ["admin", "analytics"],
+    queryFn: async () => {
+      const { data, error } = await supabase.rpc("get_admin_analytics");
+      if (error) throw error;
+      return (data ?? {}) as {
+        total_visitors?: number;
+        page_views?: number;
+        form_starts?: number;
+        enroll_clicks?: number;
+      };
+    },
+  });
 
   const updateStatus = useMutation({
     mutationFn: async ({ id, value }: { id: string; value: string }) => {
@@ -124,9 +137,7 @@ function Admin() {
     const csv = [
       headers.join(","),
       ...rows.map((r) =>
-        headers
-          .map((h) => `"${String(r[h] ?? "").replace(/"/g, '""')}"`)
-          .join(","),
+        headers.map((h) => `"${String(r[h] ?? "").replace(/"/g, '""')}"`).join(","),
       ),
     ].join("\n");
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
@@ -147,6 +158,10 @@ function Admin() {
       value: (admissions.data ?? []).filter((a) => a.status === "Enrolled").length,
     },
     { label: "Active batch months", value: (months.data ?? []).filter((m) => m.active).length },
+    { label: "Unique visitors", value: analytics.data?.total_visitors ?? 0 },
+    { label: "Page views", value: analytics.data?.page_views ?? 0 },
+    { label: "Form starts", value: analytics.data?.form_starts ?? 0 },
+    { label: "Enroll clicks", value: analytics.data?.enroll_clicks ?? 0 },
   ];
 
   return (
@@ -158,7 +173,17 @@ function Admin() {
             Review applications, update statuses and manage batch months.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          <Button asChild variant="outline">
+            <Link to="/admin/admissions">
+              <Users className="size-4" /> Manage admissions
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/admin/analytics">
+              <BarChart3 className="size-4" /> Analytics
+            </Link>
+          </Button>
           <Button variant="outline" onClick={exportCsv} disabled={rows.length === 0}>
             <Download className="size-4" aria-hidden="true" /> Export CSV
           </Button>
@@ -166,7 +191,7 @@ function Admin() {
             variant="ghost"
             onClick={async () => {
               await supabase.auth.signOut();
-              navigate({ to: "/auth" });
+              navigate({ to: "/admin/login" });
             }}
           >
             <LogOut className="size-4" aria-hidden="true" /> Sign out
